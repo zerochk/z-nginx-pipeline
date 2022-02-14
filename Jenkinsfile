@@ -33,5 +33,13 @@ pipeline {
                 sh 'docker container run -d --rm --name my-demo-nginx -p 80:80 --network jenkins hoangledinh65/demo-image:1.0'
             }
         }
+        stage('Test') {
+            agent {
+                docker { image 'node:16.13.1-alpine'}
+            }
+            steps {
+                sh 'node --version'
+            }
+        }
     }
 }
