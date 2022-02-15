@@ -3,10 +3,12 @@ pipeline {
 
     environment {
         DOCKERHUB_CREDENTIALS=credentials('dockerhub')
+        fullname = 'tnthach'
     }
     stages {
         stage('Build') {
             steps {
+                sh 'echo $fullname'
                 echo 'Building nginx image..'
                 sh 'docker build -t zerochkdocker/demo-image:1.0 .'
                 
