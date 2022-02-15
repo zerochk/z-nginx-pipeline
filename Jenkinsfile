@@ -38,6 +38,8 @@ pipeline {
                 docker { image 'node:16.13.1-alpine'}
             }
             steps {
+                sh 'pwd'
+                sh 'ls -a'
                 sh 'node --version'
             }
         }
