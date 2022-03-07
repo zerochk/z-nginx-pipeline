@@ -4,7 +4,7 @@ pipeline {
     parameters {
         string(name: 'PERSON', defaultValue: 'Thach', description: 'Input your name')
         text(name: 'Introduction', defaultValue:'', description:'Share something about you')
-        boooleanParam(name:'Male', defaultValue:true)
+        booleanParam(name:'Male', defaultValue:true)
         choice(name:'English-level', choices:['Lv1','Lv2','Lv3'],description:'select your english level')
     }
     environment {
