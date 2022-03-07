@@ -1,13 +1,23 @@
 pipeline {
     agent any
 
+    parameters {
+        string(name: 'PERSON', defaultValue: 'Thach', description: 'Input your name')
+        text(name: 'Introduction', defaultValue:'', description:'Share something about you')
+        boooleanParam(name:'Male', defaultValue:true)
+        choice(name:'English-level', choices:['Lv1','Lv2','Lv3'],description:'select your english level')
+    }
     environment {
         DOCKERHUB_CREDENTIALS=credentials('dockerhub')
         fullname = 'tnthach'
     }
     stages {
-        stage('Build') {
+        stage('Initialise') {
             steps {
+                echo "Hello: ${params.PERSON}"
+                echo "Introduction: ${params.Introduction}"
+                echo "You are ${params.Male}"
+                echo "English level ${params.English-level}"
                 sh 'echo $fullname'
                 echo 'Building nginx image..'
                 sh 'docker build -t zerochkdocker/demo-image:1.0 .'
