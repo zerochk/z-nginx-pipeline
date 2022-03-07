@@ -5,7 +5,7 @@ pipeline {
         string(name: 'PERSON', defaultValue: 'Thach', description: 'Input your name')
         text(name: 'Introduction', defaultValue:'', description:'Share something about you')
         booleanParam(name:'Male', defaultValue:true)
-        choice(name:'English-level', choices:['Lv1','Lv2','Lv3'],description:'select your english level')
+        choice(name:'Englishlevel', choices:['Lv1','Lv2','Lv3'],description:'select your english level')
     }
     environment {
         DOCKERHUB_CREDENTIALS=credentials('dockerhub')
@@ -17,7 +17,7 @@ pipeline {
                 echo "Hello: ${params.PERSON}"
                 echo "Introduction: ${params.Introduction}"
                 echo "You are ${params.Male}"
-                echo "English level ${params.English-level}"
+                echo "English level: ${params.Englishlevel}"
                 sh 'echo $fullname'
                 echo 'Building nginx image..'
                 sh 'docker build -t zerochkdocker/demo-image:1.0 .'
