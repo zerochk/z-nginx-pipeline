@@ -1,6 +1,5 @@
 pipeline {
     agent any
-
     parameters {
         string(name: 'PERSON', defaultValue: 'Thach', description: 'Input your name')
         text(name: 'Introduction', defaultValue:'', description:'Share something about you')
@@ -13,11 +12,16 @@ pipeline {
     }
     stages {
         stage('Initialise') {
+            agent{
+                node {
+                    label 'aws'
+                }
+            }
             steps {
                 echo "Hello: ${params.PERSON}"
                 echo "Introduction: ${params.Introduction}"
                 echo "You are ${params.Male}"
-                echo "English level: ${params.Englishlevel}"
+                echo "Englishlevel ${params.Englishlevel}"
                 sh 'echo $fullname'
                 echo 'Building nginx image..'
                 sh 'docker build -t zerochkdocker/demo-image:1.0 .'
